@@ -1,28 +1,54 @@
-In this DevOps task, you need to build and deploy a full-stack CRUD application using the MEAN stack (MongoDB, Express, Angular 15, and Node.js). The backend will be developed with Node.js and Express to provide REST APIs, connecting to a MongoDB database. The frontend will be an Angular application utilizing HTTPClient for communication.  
+# Front-Backend Project (MEAN Stack)
 
-The application will manage a collection of tutorials, where each tutorial includes an ID, title, description, and published status. Users will be able to create, retrieve, update, and delete tutorials. Additionally, a search box will allow users to find tutorials by title.
+This project is a full-stack CRUD application built with **MongoDB, Express, Angular 15, and Node.js (MEAN stack)**.  
+It demonstrates **containerization, deployment with Docker Compose**, and **CI/CD automation using GitHub Actions**. The frontend and backend are served via **Nginx reverse proxy**.
 
-## Project setup
+---
 
-### Node.js Server
+## **Project Overview**
 
-cd backend
+- **Backend:** Node.js + Express REST API connected to MongoDB.  
+- **Frontend:** Angular 15 application using HTTPClient to interact with backend APIs.  
+- **Database:** MongoDB (Docker container).  
+- **Containerization:** Docker & Docker Compose for all services.  
+- **CI/CD:** GitHub Actions workflow to build Docker images, push to Docker Hub, and update VM.  
+- **Reverse Proxy:** Nginx serves frontend and backend via port 80.  
 
-npm install
+---
 
-You can update the MongoDB credentials by modifying the `db.config.js` file located in `app/config/`.
+## **Setup & Deployment**
 
-Run `node server.js`
+All steps have been completed:
 
-### Angular Client
+1. Repository cloned and Dockerfiles created for frontend & backend.  
+2. Docker images built and pushed to Docker Hub.  
+3. Ubuntu VM set up with Docker and Docker Compose.  
+4. Application deployed via `docker compose up -d`.  
+5. MongoDB running as a Docker container.  
+6. Nginx configured as a reverse proxy.  
+7. GitHub Actions CI/CD workflow configured and verified.
 
-cd frontend
+**Application Access:**  
 
-npm install
+http://<SERVER_IP>
 
-Run `ng serve --port 8081`
+---
 
-You can modify the `src/app/services/tutorial.service.ts` file to adjust how the frontend interacts with the backend.
+## **CI/CD Pipeline**
 
-Navigate to `http://localhost:8081/`
-# Test CI/CD
+The GitHub Actions workflow:![WhatsApp Image 2025-11-28 at 8 17 18 PM (1)]
+
+
+
+- Builds Docker images for frontend and backend.  
+- Pushes images to Docker Hub.  
+- SSHs into the Ubuntu VM and runs:
+```bash
+sudo docker compose pull
+sudo docker compose up -d
+Automatically updates containers on VM on each push.
+
+
+
+
+
